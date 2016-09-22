@@ -14,7 +14,21 @@
 
 package org.elasticsearch.examples.nativescript.plugin;
 
-import org.elasticsearch.examples.nativescript.script.*;
+
+import org.elasticsearch.examples.nativescript.script.IsPrimeSearchScript;
+import org.elasticsearch.examples.nativescript.script.LanguageModelScoreScript;
+import org.elasticsearch.examples.nativescript.script.LookupScript;
+import org.elasticsearch.examples.nativescript.script.CosineSimilarityScoreScript;
+import org.elasticsearch.examples.nativescript.script.PhraseScoreScript;
+import org.elasticsearch.examples.nativescript.script.TFIDFScoreScript;
+import org.elasticsearch.examples.nativescript.script.PopularityScoreScriptFactory;
+import org.elasticsearch.examples.nativescript.script.RandomSortScriptFactory;
+import org.elasticsearch.examples.nativescript.script.RelevantFieldScriptFactory;
+import org.elasticsearch.examples.nativescript.script.stockaggs.MyCombineScript;
+import org.elasticsearch.examples.nativescript.script.stockaggs.MyInitScript;
+import org.elasticsearch.examples.nativescript.script.stockaggs.MyMapScript;
+import org.elasticsearch.examples.nativescript.script.stockaggs.MyReduceScript;
+
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
 
@@ -58,5 +72,11 @@ public class NativeScriptExamplesPlugin extends AbstractPlugin {
         module.registerScript(PhraseScoreScript.SCRIPT_NAME, PhraseScoreScript.Factory.class);
         module.registerScript(LanguageModelScoreScript.SCRIPT_NAME, LanguageModelScoreScript.Factory.class);
         module.registerScript(RelevantFieldScriptFactory.SCRIPT_NAME, RelevantFieldScriptFactory.class);
+
+        // Register Custom Aggregation Scripts
+        module.registerScript("my_init", MyInitScript.class);
+        module.registerScript("my_map", MyMapScript.class);
+        module.registerScript("my_combine", MyCombineScript.class);
+        module.registerScript("my_reduce", MyReduceScript.class);
     }
 }
